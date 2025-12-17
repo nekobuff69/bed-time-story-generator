@@ -1,24 +1,27 @@
+import {systemPrompt} from "../src/data/systemPrompt.js";
 export const getStoryContent = async (storySettingsData) => {
 	const {character, mood, environment, theme} = storySettingsData;
 
 	const url = "http://127.0.0.1:1234/v1/chat/completions";
-	const model = "openai/gpt-oss-20b";
-	const systemPrompt =
-		"Super creative writer. Provided any materials, you can convert them into astonishing writtings.";
-	const promptToGenStory = `Write a bedtime story based on materials provided below: 
-    ~~~
-    - Characters: ${character}
-    - Mood: ${mood}
-    - Environment: ${environment}
-    - Themem: ${theme}
-    ~~~
-    Requriments:
-    - 1. ALL elements must be blend into the narrative naturally
-    - 2. The story should be at most 200 words
-    - 3. ONLY output the story written in markdown format`;
+	// const model = "openai/gpt-oss-20b";
+	// const model = "hermes-4.3-36b";
+	const model = "qwen_qwen3-30b-a3b-thinking-2507";
+	const promptToGenStory = `User input provided below: 
+~~~
+- Characters: ${character}
+- Mood: ${mood}
+- Environment: ${environment}
+- Themem: ${theme}
+~~~
+
+FINAL OUTPUT REQUIRMENTS:
+- The story should be at most 250 words
+- Add at emojis to high-light important descriptions, if needed. DO NOT ovreuse it.
+- ONLY provide the story written in markdown format. NOTHING ELSE.`;
 
 	console.log(`\n****PROCESSING****`);
-	console.log(`Submitted prompt: ${promptToGenStory}`);
+	console.log(`systemPrompt: ${systemPrompt}`);
+	console.log(`prompt: ${promptToGenStory}`);
 	const response = await fetch(url, {
 		headers: {
 			"Content-Type": "application/json",
@@ -30,9 +33,9 @@ export const getStoryContent = async (storySettingsData) => {
 				{role: "system", content: systemPrompt},
 				{role: "user", content: promptToGenStory},
 			],
-			reasoning: {
-				effort: "low",
-			},
+			// reasoning: {
+			// 	effort: "high",
+			// },
 		}),
 	});
 

@@ -1,8 +1,6 @@
 import {useState} from "react";
 import SettingItem from "./SettingItem";
 import {defaultSettings} from "../data/defaultSettings.js";
-import {send} from "vite";
-// import {getStoryContent} from "../../utils/getAiResponse.js";
 
 // State: Manages array of setting objects, each with a value array for customizable options
 export default function AllSettings({getStoryContent, sendStoryContent}) {

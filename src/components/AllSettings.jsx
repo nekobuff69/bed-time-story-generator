@@ -5,14 +5,32 @@ import {defaultSettings} from "./defaultSettings.js";
 export default function AllSettings() {
 	const [allSettings, setAllSettings] = useState(defaultSettings);
 
+	const handleRemoveValue = (valueToRemove, oneSettingIndex) => {
+		setAllSettings((prev) =>
+			prev.map((oneSettingItem) => {
+				if (prev.indexOf(oneSettingItem) === oneSettingIndex) {
+					const updatedValue = oneSettingItem.value.filter((existingValue) => {
+						return existingValue !== valueToRemove;
+					});
+					return {
+						...oneSettingItem,
+						value: updatedValue,
+					};
+				} else {
+					return oneSettingItem;
+				}
+			})
+		);
+	};
+
 	const handleAddValue = (targetInputValue, oneSettingIndex) => {
 		setAllSettings((prev) =>
 			prev.map((oneSettingItem) => {
 				if (prev.indexOf(oneSettingItem) === oneSettingIndex) {
-					const newValue = [...oneSettingItem.value, targetInputValue];
+					const updatedValue = [...oneSettingItem.value, targetInputValue];
 					return {
 						...oneSettingItem,
-						value: newValue,
+						value: updatedValue,
 					};
 				} else {
 					return oneSettingItem;
@@ -27,6 +45,7 @@ export default function AllSettings() {
 				key={item.id}
 				oneSetting={item}
 				handleAddValue={handleAddValue}
+				handleRemoveValue={handleRemoveValue}
 			/>
 		);
 	});

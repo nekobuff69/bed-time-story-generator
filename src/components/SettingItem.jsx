@@ -1,19 +1,21 @@
 import {useState} from "react";
 
-export default function SettingItem({oneSetting, handleAddValue}) {
-	// const [oneSettingValue, setOneSettingValue] = useState(oneSetting.value);
-
-	// const handleRemoveValue = (e) => {
-	// 	setOneSettingValue((prev) =>
-	// 		prev.filter((item) => {
-	// 			return item !== e.target.value;
-	// 		})
-	// 	);
-	// };
+export default function SettingItem({
+	oneSetting,
+	handleAddValue,
+	handleRemoveValue,
+}) {
+	const clickHandleRemoveValue = (e) => {
+		const valueToRemove = e.target.value;
+		console.log(`valueToRemove: ${valueToRemove}`);
+		handleRemoveValue(valueToRemove, oneSetting.index);
+	};
 
 	const clickHandleAddValue = () => {
-		const inputValue = document.getElementById(`${oneSetting.id}-input`).value;
+		const inputEl = document.getElementById(`${oneSetting.id}-input`);
+		const inputValue = inputEl.value;
 		handleAddValue(inputValue, oneSetting.index);
+		inputEl.value = "";
 	};
 
 	const oneSettingValueEl = oneSetting.value.map((item) => {
@@ -24,7 +26,7 @@ export default function SettingItem({oneSetting, handleAddValue}) {
 					type='checkbox'
 					value={item}
 					defaultChecked={true}
-					// onChange={handleRemoveValue}
+					onChange={clickHandleRemoveValue}
 				/>
 			</label>
 		);

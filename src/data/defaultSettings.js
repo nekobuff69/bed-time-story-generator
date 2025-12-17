@@ -5,7 +5,7 @@ export const defaultSettings = [
 		description: "Select 1-3 quirky characters:",
 		value: [
 			"Time-Traveling Cat",
-			"Cupcake-Wielding Robot",
+			// "Cupcake-Wielding Robot",
 			"Superhero Pineapple",
 			"Unicorn with a PhD in Math",
 		],
@@ -14,7 +14,11 @@ export const defaultSettings = [
 		index: 1,
 		id: "mood",
 		description: "Choose the story's mood:",
-		value: ["Whimsical", "Adventurous", "Mysterious"],
+		value: [
+			// "Whimsical",
+			"Adventurous",
+			"Mysterious",
+		],
 	},
 	{
 		index: 2,
@@ -27,7 +31,7 @@ export const defaultSettings = [
 		id: "theme",
 		description: "Select a captivating theme:",
 		value: [
-			"Time Travel",
+			// "Time Travel",
 			"Secret Spy Mission",
 			"Alien Encounter",
 			// "Magical Showdown",

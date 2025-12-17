@@ -5,6 +5,8 @@
 	---header-font-weight: 500;
 	---header-font-color: rgb(221, 64, 161);
 	---header-text-shadow: 2px 3px 4px rgb(160, 222, 59);
+
+	---submit-panel-bg: pink;
 }
 
 #root {
@@ -53,4 +55,13 @@ header {
 
 	text-align: left;
 	align-content: center;
+}
+
+.submit-panel {
+	background: var(---submit-panel-bg);
+}
+
+.submit-panel h1 {
+	font-family: "Henny Penny", system-ui;
+	font-size: 40px;
 }

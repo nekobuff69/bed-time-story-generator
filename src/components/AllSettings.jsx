@@ -1,9 +1,11 @@
 import {useState} from "react";
 import SettingItem from "./SettingItem";
 import {defaultSettings} from "../data/defaultSettings.js";
+import {send} from "vite";
+// import {getStoryContent} from "../../utils/getAiResponse.js";
 
 // State: Manages array of setting objects, each with a value array for customizable options
-export default function AllSettings() {
+export default function AllSettings({getStoryContent, sendStoryContent}) {
 	const [allSettings, setAllSettings] = useState(defaultSettings);
 
 	// Handler: Removes specified value from the value array of the setting at given index using filter
@@ -49,24 +51,55 @@ export default function AllSettings() {
 	};
 
 	// Render: Maps each setting to SettingItem component, passing setting data and callback handlers
-	const allSettingEl = allSettings.map((item) => {
+	const allSettingEl = allSettings.map((oneSettng) => {
 		return (
 			<SettingItem
-				key={item.id}
-				oneSetting={item}
+				key={oneSettng.id}
+				oneSetting={oneSettng}
 				handleAddValue={handleAddValue}
 				handleRemoveValue={handleRemoveValue}
 			/>
 		);
 	});
 
+	const getAllSettingsData = (formData) => {
+		const characterData = formData.getAll("character");
+		const moodData = formData.getAll("mood");
+		const environmentData = formData.getAll("environment");
+		const themeData = formData.getAll("theme");
+		const allSettingsData = {
+			character: characterData,
+			mood: moodData,
+			environment: environmentData,
+			theme: themeData,
+		};
+
+		return allSettingsData;
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const formData = new FormData(e.target);
+		const settingsData = getAllSettingsData(formData);
+		sendStoryContent(""); //Clear the story section before new story generated
+		const storyContentMd = await getStoryContent(settingsData);
+		sendStoryContent(storyContentMd);
+	};
+
 	return (
-		<form className='settings-container'>
+		<form
+			id='settings-form'
+			className='settings-container'
+			onSubmit={handleSubmit}>
 			<h2 className='instruction'>
 				Customize your bedtime story experience! Choose from a variety of fun
 				settings or add your own by typing and submitting your ideas.
 			</h2>
 			{allSettingEl}
+			<section className='submit-panel'>
+				<h1>All set! Let's see what we'll get</h1>
+				<button type='submit'>Summon Story</button>
+			</section>
 		</form>
 	);
 }

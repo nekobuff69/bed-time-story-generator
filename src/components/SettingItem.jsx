@@ -1,16 +1,16 @@
-import {useState} from "react";
-
 export default function SettingItem({
 	oneSetting,
 	handleAddValue,
 	handleRemoveValue,
 }) {
+	// Event handler: Extracts value from checkbox event, calls parent remove handler with value and setting index
 	const clickHandleRemoveValue = (e) => {
 		const valueToRemove = e.target.value;
 		console.log(`valueToRemove: ${valueToRemove}`);
 		handleRemoveValue(valueToRemove, oneSetting.index);
 	};
 
+	// Event handler: Gets input value, calls parent add handler, clears input
 	const clickHandleAddValue = () => {
 		const inputEl = document.getElementById(`${oneSetting.id}-input`);
 		const inputValue = inputEl.value;
@@ -18,6 +18,8 @@ export default function SettingItem({
 		inputEl.value = "";
 	};
 
+	// Render: Maps each value in setting to a checkbox label.
+	//Default state is checked, if clicked to unchecked, it will be removed
 	const oneSettingValueEl = oneSetting.value.map((item) => {
 		return (
 			<label key={item} className={`${oneSetting.id}-value`}>

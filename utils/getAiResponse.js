@@ -15,7 +15,7 @@ export const getStoryContent = async (storySettingsData) => {
 ~~~
 
 FINAL OUTPUT REQUIRMENTS:
-- The story should be at most 250 words
+- The story should be at least 250 words
 - Add at emojis to high-light important descriptions, if needed. DO NOT ovreuse it.
 - ONLY provide the story written in markdown format. NOTHING ELSE.`;
 

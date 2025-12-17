@@ -4,18 +4,29 @@ import {defaultSettings} from "./defaultSettings.js";
 
 export default function AllSettings() {
 	const [allSettings, setAllSettings] = useState(defaultSettings);
-	// console.log(`Initial Settings:${defaultSettings}`);
-	// const addSettingValue = () => {
-	//     const newValue
 
-	// }
+	const handleAddValue = (targetInputValue, oneSettingIndex) => {
+		setAllSettings((prev) =>
+			prev.map((oneSettingItem) => {
+				if (prev.indexOf(oneSettingItem) === oneSettingIndex) {
+					const newValue = [...oneSettingItem.value, targetInputValue];
+					return {
+						...oneSettingItem,
+						value: newValue,
+					};
+				} else {
+					return oneSettingItem;
+				}
+			})
+		);
+	};
 
 	const allSettingEl = allSettings.map((item) => {
 		return (
 			<SettingItem
 				key={item.id}
 				oneSetting={item}
-				// addSettingValue={addSettingValue}
+				handleAddValue={handleAddValue}
 			/>
 		);
 	});

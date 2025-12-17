@@ -1,32 +1,30 @@
 import {useState} from "react";
 
-export default function SettingItem({oneSetting}) {
-	const [oneSettingValue, setOneSettingValue] = useState(oneSetting.value);
+export default function SettingItem({oneSetting, handleAddValue}) {
+	// const [oneSettingValue, setOneSettingValue] = useState(oneSetting.value);
 
-	const handleAddValue = () => {
-		const inputEl = document.getElementById(`${oneSetting.id}-input`);
-		const newValue = inputEl.value;
-		setOneSettingValue((prev) => [...prev, newValue]);
-		inputEl.value = "";
+	// const handleRemoveValue = (e) => {
+	// 	setOneSettingValue((prev) =>
+	// 		prev.filter((item) => {
+	// 			return item !== e.target.value;
+	// 		})
+	// 	);
+	// };
+
+	const clickHandleAddValue = () => {
+		const inputValue = document.getElementById(`${oneSetting.id}-input`).value;
+		handleAddValue(inputValue, oneSetting.index);
 	};
 
-	const handleRemoveValue = (e) => {
-		setOneSettingValue((prev) =>
-			prev.filter((item) => {
-				return item !== e.target.value;
-			})
-		);
-	};
-
-	const oneSettingValueEl = oneSettingValue.map((item) => {
+	const oneSettingValueEl = oneSetting.value.map((item) => {
 		return (
-			<label key={item} className={`${oneSettingValue.id}-value`}>
+			<label key={item} className={`${oneSetting.id}-value`}>
 				{item}
 				<input
 					type='checkbox'
 					value={item}
 					defaultChecked={true}
-					onChange={handleRemoveValue}
+					// onChange={handleRemoveValue}
 				/>
 			</label>
 		);
@@ -46,7 +44,7 @@ export default function SettingItem({oneSetting}) {
 			/>
 			<button
 				className='btn-add-new-value'
-				onClick={handleAddValue}
+				onClick={clickHandleAddValue}
 				type='button'>
 				Add {oneSetting.id}
 			</button>

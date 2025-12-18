@@ -69,6 +69,8 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 		const formData = new FormData(e.target);
 		const settingsData = getAllSettingsData(formData);
 		sendStoryContent(""); //Clear the story section before new story generated
+		const storyPlaceHolder = "# Story is generating...Place wait #"; // To make StorySection visible, when the actual story has not been generated yet
+		sendStoryContent(storyPlaceHolder);
 		const storyContentMd = await getStoryContent(settingsData);
 		sendStoryContent(storyContentMd);
 	};

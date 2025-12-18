@@ -1,5 +1,3 @@
-import {useState} from "react";
-
 export default function SubmitPanel() {
 	return (
 		<section className='submit-panel'>

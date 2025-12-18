@@ -21,9 +21,6 @@ export const defaultSettings = [
 		index: 3,
 		id: "theme",
 		description: "Select a captivating theme:",
-		value: [
-			"Secret Spy Mission",
-			//"Alien Encounter"
-		],
+		value: ["Secret Spy Mission", "Alien Encounter"],
 	},
 ];

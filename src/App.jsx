@@ -10,6 +10,7 @@ function App() {
 
 	const sendStoryContent = (storyContentMd) => {
 		setStorySection(storyContentMd);
+		console.log(storyContent);
 	};
 
 	return (

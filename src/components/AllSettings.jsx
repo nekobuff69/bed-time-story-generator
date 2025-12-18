@@ -2,10 +2,22 @@ import {useState} from "react";
 import SettingItem from "./SettingItem";
 import {defaultSettings} from "../data/defaultSettings.js";
 import SubmitPanel from "./submitPanel.jsx";
+import ReplayPanel from "./ReplayPanel.jsx";
 
 export default function AllSettings({getStoryContent, sendStoryContent}) {
 	// State: Manages array of setting objects, each with a value array for customizable options
 	const [allSettings, setAllSettings] = useState(defaultSettings);
+	const [showReplayPanel, setShowReplayPanel] = useState(false);
+	const [formSubmitted, setFormSubmitted] = useState(false);
+
+	// Rest the form to default states. Clear story section content, hide ReplayPanel.
+	// User can choose/enter another setting combinations to generate new story
+	const resetToDefault = () => {
+		setAllSettings([...defaultSettings]);
+		sendStoryContent("");
+		setShowReplayPanel(false);
+		setFormSubmitted(false);
+	};
 
 	// Handler: Removes specified value from the value array of the setting at given index using filter
 	const handleRemoveValue = (valueToRemove, oneSettingIndex) => {
@@ -69,9 +81,11 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 		const formData = new FormData(e.target);
 		const settingsData = getAllSettingsData(formData);
 		sendStoryContent(""); //Clear the story section before new story generated
-		const storyPlaceHolder = "# Story is generating...Place wait #"; // To make StorySection visible, when the actual story has not been generated yet
+		const storyPlaceHolder = "# Story is generating... #"; // To make StorySection visible, when the actual story has not been generated yet
 		sendStoryContent(storyPlaceHolder);
 		const storyContentMd = await getStoryContent(settingsData);
+		setFormSubmitted(true);
+		setShowReplayPanel(true);
 		sendStoryContent(storyContentMd);
 	};
 
@@ -96,16 +110,19 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 	});
 
 	return (
-		<form
-			id='settings-form'
-			className='settings-container'
-			onSubmit={handleSubmit}>
-			<h2 className='instruction'>
-				Customize your bedtime story experience! Choose from a variety of fun
-				settings or add your own by typing and submitting your ideas.
-			</h2>
-			{allSettingEl}
-			{optionsReachLimit && <SubmitPanel />}
-		</form>
+		<>
+			<form
+				id='settings-form'
+				className='settings-container'
+				onSubmit={handleSubmit}>
+				<h2 className='instruction'>
+					Customize your bedtime story experience! Choose from a variety of fun
+					settings or add your own by typing and submitting your ideas.
+				</h2>
+				{allSettingEl}
+				{optionsReachLimit && !formSubmitted && <SubmitPanel />}
+			</form>
+			{showReplayPanel && <ReplayPanel resetToDefault={resetToDefault} />}
+		</>
 	);
 }

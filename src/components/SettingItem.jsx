@@ -2,6 +2,7 @@ export default function SettingItem({
 	oneSetting,
 	handleAddValue,
 	handleRemoveValue,
+	optionLimit,
 }) {
 	//Destructure keys form oneSetting object for cleaner codes below
 	const {index, id, description, value} = oneSetting;
@@ -37,24 +38,30 @@ export default function SettingItem({
 			</label>
 		);
 	});
+	// The limit of how many options one setting item can get
 
 	return (
 		<section className={`${id}-setting-container`}>
 			<h3 className='description'>{description}</h3>
 			{oneSettingValueEl}
-			<input
-				className='custom-input'
-				id={`${id}-input`}
-				type='text'
-				placeholder={`whatever you feel like`}
-				name={id}
-				defaultValue=''
-			/>
+			{value.length < optionLimit && ( // When number of options reach optionLimit, input field disappear
+				<input
+					className='custom-input'
+					id={`${id}-input`}
+					type='text'
+					name={id}
+					defaultValue=''
+				/>
+			)}
 			<button
+				id={`btn-add-${id}`}
 				className='btn-add-new-value'
 				onClick={clickHandleAddValue}
-				type='button'>
-				Add {id}
+				type='button'
+				// When number of options reach optionLimit, button will be disabled.
+				// A notice appear to prompt user
+				disabled={value.length >= optionLimit ? true : false}>
+				{value.length >= optionLimit ? `done, move on` : `add ${id}`}
 			</button>
 		</section>
 	);

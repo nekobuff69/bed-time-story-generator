@@ -2,7 +2,6 @@ import {useState} from "react";
 import "./App.css";
 import Header from "./components/Header";
 import AllSettings from "./components/AllSettings";
-import SubmitPanel from "./components/submitPanel";
 import StorySection from "./components/StorySection";
 import {getStoryContent} from "../utils/getAiResponse.js";
 
@@ -20,8 +19,6 @@ function App() {
 				getStoryContent={getStoryContent}
 				sendStoryContent={sendStoryContent}
 			/>
-
-			{/* <SubmitPanel /> */}
 			{storyContent !== "" && <StorySection storyContent={storyContent} />}
 		</>
 	);

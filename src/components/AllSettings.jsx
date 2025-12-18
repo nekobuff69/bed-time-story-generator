@@ -1,9 +1,10 @@
 import {useState} from "react";
 import SettingItem from "./SettingItem";
 import {defaultSettings} from "../data/defaultSettings.js";
+import SubmitPanel from "./submitPanel.jsx";
 
-// State: Manages array of setting objects, each with a value array for customizable options
 export default function AllSettings({getStoryContent, sendStoryContent}) {
+	// State: Manages array of setting objects, each with a value array for customizable options
 	const [allSettings, setAllSettings] = useState(defaultSettings);
 
 	// Handler: Removes specified value from the value array of the setting at given index using filter
@@ -48,18 +49,6 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 		);
 	};
 
-	// Render: Maps each setting to SettingItem component, passing setting data and callback handlers
-	const allSettingEl = allSettings.map((oneSettng) => {
-		return (
-			<SettingItem
-				key={oneSettng.id}
-				oneSetting={oneSettng}
-				handleAddValue={handleAddValue}
-				handleRemoveValue={handleRemoveValue}
-			/>
-		);
-	});
-
 	const getAllSettingsData = (formData) => {
 		const characterData = formData.getAll("character");
 		const moodData = formData.getAll("mood");
@@ -84,6 +73,26 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 		sendStoryContent(storyContentMd);
 	};
 
+	//optionLimit decides max options each setting(character, mood, environment, theme) can get.
+	const optionLimit = 2;
+	//Only render submit panel when each setting's options reach the limit
+	const optionsReachLimit = allSettings.every((oneSettingItem) => {
+		return oneSettingItem.value.length >= optionLimit;
+	});
+
+	// Render: Maps each setting to SettingItem component, passing setting data and callback handlers
+	const allSettingEl = allSettings.map((oneSetting) => {
+		return (
+			<SettingItem
+				key={oneSetting.id}
+				oneSetting={oneSetting}
+				handleAddValue={handleAddValue}
+				handleRemoveValue={handleRemoveValue}
+				optionLimit={optionLimit}
+			/>
+		);
+	});
+
 	return (
 		<form
 			id='settings-form'
@@ -94,10 +103,7 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 				settings or add your own by typing and submitting your ideas.
 			</h2>
 			{allSettingEl}
-			<section className='submit-panel'>
-				<h1>All set! Let's see what we'll get</h1>
-				<button type='submit'>Summon Story</button>
-			</section>
+			{optionsReachLimit && <SubmitPanel />}
 		</form>
 	);
 }

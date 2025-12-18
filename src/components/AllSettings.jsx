@@ -81,7 +81,7 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 		const formData = new FormData(e.target);
 		const settingsData = getAllSettingsData(formData);
 		sendStoryContent(""); // Clear the story section before new story generated
-		const storyPlaceHolder = "# Story is generating... #"; // To make StorySection visible, when the actual story has not been generated yet
+		const storyPlaceHolder = "# The tale is weaving itself... #"; // To make StorySection visible, when the actual story has not been generated yet
 		sendStoryContent(storyPlaceHolder);
 
 		// Start streaming with incremental updates
@@ -128,8 +128,9 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 				className='settings-container'
 				onSubmit={handleSubmit}>
 				<h2 className='instruction'>
-					Customize your bedtime story experience! Choose from a variety of fun
-					settings or add your own by typing and submitting your ideas.
+					Welcome, young dream-weaver! Let's spin a magical tale together. Pick
+					your heroes, set the mood, and discover wondrous worlds—or conjure
+					your own enchantments!
 				</h2>
 				{allSettingEl}
 				{optionsReachLimit && !formSubmitted && <SubmitPanel />}

@@ -4,11 +4,11 @@ export default function ReplayPanel({resetToDefault}) {
 		//the other button reuse same combination of settings
 		<section id='replay-panel'>
 			<button id='btn-reset-form' type='button' onClick={resetToDefault}>
-				Start by default
+				Begin a new adventure
 			</button>
 
 			<button id='btn-one-more-story' type='submit' form='settings-form'>
-				One more like this
+				Tell another yarn
 			</button>
 		</section>
 	);

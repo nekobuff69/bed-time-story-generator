@@ -1,7 +1,7 @@
 export default function Header() {
 	return (
 		<header>
-			<h1 className='header-title'>Bed Time Story Generator</h1>
+			<h1 className='header-title'>The Enchanted Story Weaver</h1>
 		</header>
 	);
 }

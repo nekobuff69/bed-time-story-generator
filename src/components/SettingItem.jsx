@@ -61,7 +61,9 @@ export default function SettingItem({
 				// When number of options reach optionLimit, button will be disabled.
 				// A notice appear to prompt user
 				disabled={value.length >= optionLimit ? true : false}>
-				{value.length >= optionLimit ? `done, move on` : `add ${id}`}
+				{value.length >= optionLimit
+					? `Ready to enchant!`
+					: `Weave in your magic`}
 			</button>
 		</section>
 	);

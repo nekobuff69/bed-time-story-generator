@@ -1,9 +1,9 @@
 export default function SubmitPanel() {
 	return (
 		<section id='submit-panel'>
-			<h1>All set! Let's see what we'll get</h1>
+			<h1>The loom is prepared! Shall we begin?</h1>
 			<button type='submit' form='settings-form'>
-				Summon Story
+				Spin the Tale
 			</button>
 		</section>
 	);

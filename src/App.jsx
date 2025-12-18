@@ -7,12 +7,16 @@ import {getStoryContent} from "../utils/getAiResponse.js";
 
 function App() {
 	const [storyContent, setStorySection] = useState("");
-
 	const sendStoryContent = (storyContentMd) => {
-		setStorySection(storyContentMd);
-		console.log(storyContent);
-	};
+		// hide submit-panel when settings data submitted, story generating
+		const submitPanelEl = document.getElementById("submit-panel");
+		if (submitPanelEl) {
+			submitPanelEl.remove();
+		}
 
+		setStorySection(storyContentMd);
+	};
+	useEF;
 	return (
 		<>
 			<Header />

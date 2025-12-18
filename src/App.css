@@ -57,11 +57,11 @@ header {
 	align-content: center;
 }
 
-.submit-panel {
+#submit-panel {
 	background: var(---submit-panel-bg);
 }
 
-.submit-panel h1 {
+#submit-panel h1 {
 	font-family: "Henny Penny", system-ui;
 	font-size: 40px;
 }

@@ -1,5 +1,6 @@
 import {systemPrompt} from "../src/data/systemPrompt.js";
-export const getStoryContent = async (storySettingsData) => {
+
+export const getStoryContent = async (storySettingsData, onChunk) => {
 	const {character, mood, environment, theme} = storySettingsData;
 
 	const url = "http://127.0.0.1:1234/v1/chat/completions";
@@ -38,12 +39,51 @@ FINAL OUTPUT REQUIRMENTS:
 				effort: "medium",
 			},
 			temperature: 1,
+			stream: true, // Enable streaming
 		}),
 	});
 
-	const data = await response.json();
-	const storyContent = data.choices[0].message.content;
-	console.log(`\n****STORY CONTENT****\n${storyContent}`);
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+
+	const reader = response.body.getReader();
+	const decoder = new TextDecoder();
+	let buffer = "";
+	let storyContent = "";
+
+	try {
+		while (true) {
+			const {done, value} = await reader.read();
+			if (done) break;
+
+			buffer += decoder.decode(value, {stream: true});
+			const lines = buffer.split("\n");
+			buffer = lines.pop(); // Keep incomplete line
+
+			for (const line of lines) {
+				if (line.startsWith("data: ")) {
+					const data = line.slice(6);
+					if (data === "[DONE]") return storyContent;
+
+					try {
+						const parsed = JSON.parse(data);
+						const delta = parsed.choices?.[0]?.delta?.content;
+						if (delta) {
+							storyContent += delta;
+							if (onChunk) onChunk(delta);
+						}
+					} catch (e) {
+						console.error("Error parsing chunk:", e);
+					}
+				}
+			}
+		}
+	} finally {
+		reader.releaseLock();
+	}
+
+	console.log(`\n****FULL STORY CONTENT****\n${storyContent}`);
 	console.log(`\n****END OF STORY****`);
 	return storyContent;
 };

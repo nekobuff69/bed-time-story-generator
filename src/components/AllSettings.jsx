@@ -80,13 +80,25 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 		e.preventDefault();
 		const formData = new FormData(e.target);
 		const settingsData = getAllSettingsData(formData);
-		sendStoryContent(""); //Clear the story section before new story generated
+		sendStoryContent(""); // Clear the story section before new story generated
 		const storyPlaceHolder = "# Story is generating... #"; // To make StorySection visible, when the actual story has not been generated yet
 		sendStoryContent(storyPlaceHolder);
-		const storyContentMd = await getStoryContent(settingsData);
+
+		// Start streaming with incremental updates
+		let isFirstChunk = true;
+		await getStoryContent(settingsData, (chunk) => {
+			//Before accumulating story content, I need to replace the placeholder with first chunk of story stream
+			if (isFirstChunk) {
+				sendStoryContent(chunk);
+				isFirstChunk = false;
+			} else {
+				// Append each chunk to the current story content
+				sendStoryContent((prev) => prev + chunk);
+			}
+		});
+
 		setFormSubmitted(true);
 		setShowReplayPanel(true);
-		sendStoryContent(storyContentMd);
 	};
 
 	//optionLimit decides max options each setting(character, mood, environment, theme) can get.

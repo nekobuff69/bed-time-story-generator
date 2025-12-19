@@ -1,8 +1,12 @@
-export default function IllustrationSection() {
+export default function IllustrationSection({illustrationUrl}) {
+	console.log("Illustration URL:", illustrationUrl);
 	return (
 		<section id='illustration-section'>
-			<h2>Image generating</h2>
-			<img src='xx' alt='illustration of bedtime story' />
+			<img
+				id='illustration'
+				src={illustrationUrl}
+				alt='illustration of bedtime story'
+			/>
 		</section>
 	);
 }

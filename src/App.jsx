@@ -5,11 +5,24 @@ import AllSettings from "./components/AllSettings";
 import StorySection from "./components/StorySection";
 import IllustrationSection from "./components/IllustrationSection";
 import {getStoryContent} from "../utils/getStoryContent.js";
-// import ReplayPanel from "./components/ReplayPanel.jsx";
+import getIllustrationPrompt from "../utils/getIllustrationPrompt.js";
+import getComfyWorkflow from "../utils/getComfyWorkflow.js";
+import {runWorkflow} from "../utils/runComfyWorkflow.js";
 
 function App() {
 	const [storyContent, setStorySection] = useState("");
 	const [isStreamingComplete, setIsStreamingComplete] = useState(false);
+
+	const illustrationPlaceholderUrl = "/illustration-placeholder.png";
+	const [illustrationUrl, setIllustrationUrl] = useState(
+		illustrationPlaceholderUrl
+	);
+	const getIllustration = async () => {
+		const illlustrationPrompt = await getIllustrationPrompt(storyContent);
+		const customizedComfyWorkflow = getComfyWorkflow(illlustrationPrompt);
+		const updatedIllustrationUrl = await runWorkflow(customizedComfyWorkflow);
+		setIllustrationUrl(updatedIllustrationUrl);
+	};
 
 	const sendStoryContent = (storyContentMd) => {
 		setStorySection(storyContentMd);
@@ -17,12 +30,16 @@ function App() {
 
 	const onStreamComplete = () => {
 		setIsStreamingComplete(true);
-		// You can add image generation logic here
 		console.log("Story streaming completed!");
+
+		//When stream is complete, trigger image generation pipeline
+		//And render it
+		getIllustration();
 	};
 
 	const resetStreamingState = () => {
 		setIsStreamingComplete(false);
+		setIllustrationUrl(illustrationPlaceholderUrl);
 	};
 
 	return (
@@ -35,7 +52,9 @@ function App() {
 				resetStreamingState={resetStreamingState}
 			/>
 			{storyContent !== "" && <StorySection storyContent={storyContent} />}
-			{isStreamingComplete && <IllustrationSection />}
+			{isStreamingComplete && (
+				<IllustrationSection illustrationUrl={illustrationUrl} />
+			)}
 		</>
 	);
 }

@@ -1,8 +1,5 @@
-// import {comfyWorkflowTemplate} from "../src/data/comfyWorkflowTemplate.js";
-export default function getComfyWorkflow(
-	illustrationPrompt,
-	comfyWorkflowTemplate
-) {
+import {comfyWorkflowTemplate} from "../src/data/comfyWorkflowTemplate.js";
+export default function getComfyWorkflow(illustrationPrompt) {
 	// Need to use different each time, or ComfyUI will not re-generate image for same prompt
 	const randomSeed = Math.floor(Math.random() * 999999999999);
 	const customizedWorkFlow = {
@@ -22,6 +19,7 @@ export default function getComfyWorkflow(
 			},
 		},
 	};
+	console.log("customized workflow created");
 	console.log(customizedWorkFlow);
 	return customizedWorkFlow;
 }

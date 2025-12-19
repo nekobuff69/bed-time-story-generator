@@ -26,7 +26,3 @@ export default async function getIllustrationPrompt(storyContent) {
 
 	return illustrationPrompt;
 }
-
-// const aStory = "Epic";
-
-// getIllustrationPrompt(aStory);

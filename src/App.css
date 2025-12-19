@@ -76,3 +76,8 @@ header {
 	background-color: rgb(152, 233, 105);
 	width: 100%;
 }
+
+#illustration-section img {
+	max-width: 100%;
+	height: auto;
+}

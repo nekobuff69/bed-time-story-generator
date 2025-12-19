@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import AllSettings from "./components/AllSettings";
 import StorySection from "./components/StorySection";
 import IllustrationSection from "./components/IllustrationSection";
-import {getStoryContent} from "../utils/getAiResponse.js";
+import {getStoryContent} from "../utils/getStoryContent.js";
 // import ReplayPanel from "./components/ReplayPanel.jsx";
 
 function App() {

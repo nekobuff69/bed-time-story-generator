@@ -35,7 +35,7 @@ bed-time-story-generator/
 │   │   └── systemPrompt.js      # AI system prompt for story generation
 │   └── App.jsx                  # Main application component
 ├── utils/
-│   └── getAiResponse.js         # AI communication and streaming logic
+│   └── getStoryContent.js         # AI communication and streaming logic
 └── README.md                    # This file
 ```
 
@@ -77,7 +77,7 @@ bed-time-story-generator/
 
 ## AI Configuration
 
-The application connects to a local AI server running on `http://127.0.0.1:1234`. Currently configured to use the `openai/gpt-oss-20b` model, but can be easily switched to other models by modifying the model variable in [`utils/getAiResponse.js`](utils/getAiResponse.js:8).
+The application connects to a local AI server running on `http://127.0.0.1:1234`. Currently configured to use the `openai/gpt-oss-20b` model, but can be easily switched to other models by modifying the model variable in [`utils/getStoryContent.js`](utils/getStoryContent.js:8).
 
 ## Development Notes
 

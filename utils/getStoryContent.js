@@ -21,9 +21,6 @@ FINAL OUTPUT REQUIRMENTS:
 - Add at emojis to high-light important descriptions, if needed. DO NOT ovreuse it.
 - ONLY provide the story written in markdown format. NOTHING ELSE.`;
 
-	console.log(`\n****PROCESSING****`);
-	console.log(`systemPrompt: ${systemPrompt}`);
-	console.log(`prompt: ${promptToGenStory}`);
 	const response = await fetch(url, {
 		headers: {
 			"Content-Type": "application/json",
@@ -82,8 +79,5 @@ FINAL OUTPUT REQUIRMENTS:
 	} finally {
 		reader.releaseLock();
 	}
-
-	console.log(`\n****FULL STORY CONTENT****\n${storyContent}`);
-	console.log(`\n****END OF STORY****`);
 	return storyContent;
 };

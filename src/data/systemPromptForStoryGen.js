@@ -58,5 +58,5 @@ Adhere strictly to the following principles.
 
 - **The Underdog's Gentle Challenge :** Focuses on a character who feels small but discovers their unique worth.
 
-_(You have the flexibility to select, vary, mix, or create new frameworks as needed.)_
+(You have the flexibility to select, vary, mix, or create new frameworks as needed.)
 `;

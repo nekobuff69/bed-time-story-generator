@@ -1,4 +1,4 @@
-import {systemPrompt} from "../src/data/systemPrompt.js";
+import {systemPrompt} from "../src/data/systemPromptForStoryGen.js";
 
 export const getStoryContent = async (storySettingsData, onChunk) => {
 	const {character, mood, environment, theme} = storySettingsData;
@@ -17,7 +17,7 @@ export const getStoryContent = async (storySettingsData, onChunk) => {
 ~~~
 
 FINAL OUTPUT REQUIRMENTS:
-- The story should be at least 250 words
+- The story should be at most 250 words
 - Add at emojis to high-light important descriptions, if needed. DO NOT ovreuse it.
 - ONLY provide the story written in markdown format. NOTHING ELSE.`;
 

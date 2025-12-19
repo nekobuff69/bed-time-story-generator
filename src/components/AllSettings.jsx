@@ -4,7 +4,12 @@ import {defaultSettings} from "../data/defaultSettings.js";
 import SubmitPanel from "./submitPanel.jsx";
 import ReplayPanel from "./ReplayPanel.jsx";
 
-export default function AllSettings({getStoryContent, sendStoryContent}) {
+export default function AllSettings({
+	getStoryContent,
+	sendStoryContent,
+	onStreamComplete,
+	resetStreamingState,
+}) {
 	// State: Manages array of setting objects, each with a value array for customizable options
 	const [allSettings, setAllSettings] = useState(defaultSettings);
 	const [showReplayPanel, setShowReplayPanel] = useState(false);
@@ -17,6 +22,7 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 		sendStoryContent("");
 		setShowReplayPanel(false);
 		setFormSubmitted(false);
+		resetStreamingState();
 	};
 
 	// Handler: Removes specified value from the value array of the setting at given index using filter
@@ -76,6 +82,8 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 		return allSettingsData;
 	};
 
+	//This function handles both first-time call to AI and regenerating
+	//So it includes some reset functions besides other acutal productive function
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.target);
@@ -83,6 +91,10 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 		sendStoryContent(""); // Clear the story section before new story generated
 		const storyPlaceHolder = "# The tale is weaving itself... #"; // To make StorySection visible, when the actual story has not been generated yet
 		sendStoryContent(storyPlaceHolder);
+
+		//Reset streaming state to hide IllustrationSection
+		//This is necessary when regenerating
+		resetStreamingState();
 
 		// Start streaming with incremental updates
 		let isFirstChunk = true;
@@ -96,6 +108,11 @@ export default function AllSettings({getStoryContent, sendStoryContent}) {
 				sendStoryContent((prev) => prev + chunk);
 			}
 		});
+
+		// Signal that streaming is complete
+		if (onStreamComplete) {
+			onStreamComplete();
+		}
 
 		setFormSubmitted(true);
 		setShowReplayPanel(true);

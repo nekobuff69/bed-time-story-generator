@@ -19,12 +19,12 @@
 	align-items: center;
 	/* padding: 2rem; */
 	text-align: center;
-	font-family: "Shadows Into Light", cursive;
+	font-family: "ZCOOL Kuaile", cursive;
 	font-weight: 400;
 }
 
 .shadows-into-light-regular {
-	font-family: "Shadows Into Light", cursive;
+	font-family: "Shadow Into Light", cursive;
 	font-weight: 400;
 	font-style: normal;
 }
@@ -33,6 +33,16 @@
 	font-family: "Henny Penny", system-ui;
 	font-weight: 400;
 	font-style: normal;
+}
+
+.zcool-kuaile-regular {
+	font-family: "ZCOOL KuaiLe", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+button {
+	font-family: inherit;
 }
 
 header {

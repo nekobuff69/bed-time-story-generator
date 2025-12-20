@@ -17,7 +17,11 @@ function App() {
 	const [illustrationUrl, setIllustrationUrl] = useState(
 		illustrationPlaceholderUrl
 	);
-	const getIllustration = async () => {
+	const getIllustration = async (storyContent) => {
+		console.log(
+			"DEBUG: getIllustration called with storyContent:",
+			storyContent
+		);
 		const illlustrationPrompt = await getIllustrationPrompt(storyContent);
 		const customizedComfyWorkflow = getComfyWorkflow(illlustrationPrompt);
 		const updatedIllustrationUrl = await runWorkflow(customizedComfyWorkflow);
@@ -28,13 +32,13 @@ function App() {
 		setStorySection(storyContentMd);
 	};
 
-	const onStreamComplete = () => {
+	const onStreamComplete = (finalStory) => {
 		setIsStreamingComplete(true);
 		console.log("Story streaming completed!");
-
+		console.log("DEBUG: onStreamComplete called with finalStory:", finalStory);
 		//When stream is complete, trigger image generation pipeline
 		//And render it
-		getIllustration();
+		getIllustration(finalStory);
 	};
 
 	const resetStreamingState = () => {

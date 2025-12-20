@@ -19,7 +19,7 @@ export const getStoryContent = async (storySettingsData, onChunk) => {
 FINAL OUTPUT REQUIRMENTS:
 - The story should be at most 250 words
 - Add at emojis to high-light important descriptions, if needed. DO NOT ovreuse it.
-- Write the story in the same language as the user's input 
+- Write the story in the same language as the user's input. If user's input include Chinese, you should reply in SIMPLIFIED CHINESE.
 - ONLY provide the story written in markdown format. NOTHING ELSE.`;
 
 	const response = await fetch(url, {

@@ -97,22 +97,24 @@ export default function AllSettings({
 
 		// Start streaming with incremental updates
 		let isFirstChunk = true;
+		let accumulatedStory = storyPlaceHolder;
 		await getStoryContent(settingsData, (chunk) => {
+			console.log("DEBUG: Received chunk:", chunk);
 			//Before accumulating story content, I need to replace the placeholder with first chunk of story stream
 			if (isFirstChunk) {
+				accumulatedStory = chunk;
 				sendStoryContent(chunk);
 				isFirstChunk = false;
 			} else {
 				// Append each chunk to the current story content
+				accumulatedStory += chunk;
 				sendStoryContent((prev) => prev + chunk);
 			}
 		});
+		console.log("DEBUG: Streaming complete");
 
 		// Signal that streaming is complete
-		if (onStreamComplete) {
-			onStreamComplete();
-		}
-
+		onStreamComplete(accumulatedStory);
 		setShowReplayPanel(true);
 	};
 

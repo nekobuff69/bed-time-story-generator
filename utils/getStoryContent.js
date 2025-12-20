@@ -5,9 +5,6 @@ export const getStoryContent = async (storySettingsData, onChunk) => {
 
 	const url = "http://127.0.0.1:1234/v1/chat/completions";
 	const model = "openai/gpt-oss-20b";
-	// const model = "hermes-4.3-36b";
-	// const model = "qwen_qwen3-30b-a3b-thinking-2507";
-	// const model = "nvidia/nemotron-3-nano";
 	const promptToGenStory = `User input provided below: 
 ~~~
 - Characters: ${character}

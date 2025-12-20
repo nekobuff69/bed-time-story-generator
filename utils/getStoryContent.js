@@ -19,6 +19,7 @@ export const getStoryContent = async (storySettingsData, onChunk) => {
 FINAL OUTPUT REQUIRMENTS:
 - The story should be at most 250 words
 - Add at emojis to high-light important descriptions, if needed. DO NOT ovreuse it.
+- Write the story in the same language as the user's input 
 - ONLY provide the story written in markdown format. NOTHING ELSE.`;
 
 	const response = await fetch(url, {
@@ -39,7 +40,7 @@ FINAL OUTPUT REQUIRMENTS:
 			stream: true, // Enable streaming
 		}),
 	});
-
+	console.log(promptToGenStory);
 	if (!response.ok) {
 		throw new Error(`HTTP error! status: ${response.status}`);
 	}

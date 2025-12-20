@@ -1,4 +1,4 @@
-export default function ReplayPanel({resetToDefault}) {
+export default function ReplayPanel({resetToDefault, handleSubmit}) {
 	return (
 		//one button trigger resetToDefault function passed AllSettings.jsx
 		//the other button reuse same combination of settings
@@ -7,7 +7,7 @@ export default function ReplayPanel({resetToDefault}) {
 				Begin a new adventure
 			</button>
 
-			<button id='btn-one-more-story' type='submit' form='settings-form'>
+			<button id='btn-one-more-story' type='button' onClick={handleSubmit}>
 				Tell another yarn
 			</button>
 		</section>

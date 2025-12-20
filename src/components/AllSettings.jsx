@@ -67,11 +67,11 @@ export default function AllSettings({
 		);
 	};
 
-	const getAllSettingsData = (formData) => {
-		const characterData = formData.getAll("character");
-		const moodData = formData.getAll("mood");
-		const environmentData = formData.getAll("environment");
-		const themeData = formData.getAll("theme");
+	const getAllSettingsData = (allSettings) => {
+		const characterData = allSettings[0].value;
+		const moodData = allSettings[1].value;
+		const environmentData = allSettings[2].value;
+		const themeData = allSettings[3].value;
 		const allSettingsData = {
 			character: characterData,
 			mood: moodData,
@@ -84,14 +84,13 @@ export default function AllSettings({
 
 	//This function handles both first-time call to AI and regenerating
 	//So it includes some reset functions besides other acutal productive function
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		const formData = new FormData(e.target);
-		const settingsData = getAllSettingsData(formData);
+	const handleSubmit = async () => {
+		// e.preventDefault();
+		const settingsData = getAllSettingsData(allSettings);
 		sendStoryContent(""); // Clear the story section before new story generated
 		const storyPlaceHolder = "# The tale is weaving itself... #"; // To make StorySection visible, when the actual story has not been generated yet
 		sendStoryContent(storyPlaceHolder);
-
+		setFormSubmitted(true);
 		//Reset streaming state to hide IllustrationSection
 		//This is necessary when regenerating
 		resetStreamingState();
@@ -114,7 +113,6 @@ export default function AllSettings({
 			onStreamComplete();
 		}
 
-		setFormSubmitted(true);
 		setShowReplayPanel(true);
 	};
 
@@ -140,19 +138,25 @@ export default function AllSettings({
 
 	return (
 		<>
-			<form
-				id='settings-form'
-				className='settings-container'
-				onSubmit={handleSubmit}>
-				<h2 className='instruction'>
-					Welcome, young dream-weaver! Let's spin a magical tale together. Pick
-					your heroes, set the mood, and discover wondrous worlds—or conjure
-					your own enchantments!
-				</h2>
-				{allSettingEl}
-				{optionsReachLimit && !formSubmitted && <SubmitPanel />}
-			</form>
-			{showReplayPanel && <ReplayPanel resetToDefault={resetToDefault} />}
+			{formSubmitted === false && (
+				<form id='settings-form' className='settings-container'>
+					<h2 className='instruction'>
+						Welcome, young dream-weaver! Let's spin a magical tale together.
+						Pick your heroes, set the mood, and discover wondrous worlds—or
+						conjure your own enchantments!
+					</h2>
+					{allSettingEl}
+					{optionsReachLimit && !formSubmitted && (
+						<SubmitPanel handleSubmit={handleSubmit} />
+					)}
+				</form>
+			)}
+			{showReplayPanel && (
+				<ReplayPanel
+					resetToDefault={resetToDefault}
+					handleSubmit={handleSubmit}
+				/>
+			)}
 		</>
 	);
 }

@@ -26,8 +26,6 @@ You will receive initial settings from the user (a parent), including but not li
 
 4.  **Write the Story:**
 
-    - Craft the full story text in English.
-
     - Strictly adhere to the **Story Writing Guidelines**, ensuring all **5 Essential Elements** are woven into the narrative.
 
     - The story must be calming, engaging, and lead to a peaceful conclusion.

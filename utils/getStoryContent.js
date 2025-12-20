@@ -31,9 +31,9 @@ FINAL OUTPUT REQUIRMENTS:
 				{role: "user", content: promptToGenStory},
 			],
 			reasoning: {
-				effort: "medium",
+				effort: "high",
 			},
-			temperature: 1,
+			temperature: 0.8,
 			stream: true, // Enable streaming
 		}),
 	});

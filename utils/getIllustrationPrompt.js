@@ -15,8 +15,9 @@ export default async function getIllustrationPrompt(storyContent) {
 				{role: "user", content: promptToGenImage},
 			],
 			reasoning: {
-				effort: "medium",
+				effort: "high",
 			},
+			temperature: 0.4,
 		}),
 	});
 	console.log("illustratioin prompt generating");

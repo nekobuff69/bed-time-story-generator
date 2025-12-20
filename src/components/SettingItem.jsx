@@ -26,9 +26,10 @@ export default function SettingItem({
 	//Default state is checked, if clicked to unchecked, it will be removed
 	const oneSettingValueEl = value.map((oneOption) => {
 		return (
-			<label key={oneOption} className={`${id}-value`}>
+			<label key={oneOption} id={`${id}-value`}>
 				{oneOption}
 				<input
+					className='check-box'
 					type='checkbox'
 					value={oneOption}
 					defaultChecked={true}

@@ -88,7 +88,7 @@ export default function AllSettings({
 		// e.preventDefault();
 		const settingsData = getAllSettingsData(allSettings);
 		sendStoryContent(""); // Clear the story section before new story generated
-		const storyPlaceHolder = "# The tale is weaving itself... #"; // To make StorySection visible, when the actual story has not been generated yet
+		const storyPlaceHolder = "## The tale is weaving itself... ##"; // To make StorySection visible, when the actual story has not been generated yet
 		sendStoryContent(storyPlaceHolder);
 		setFormSubmitted(true);
 		//Reset streaming state to hide IllustrationSection
@@ -142,7 +142,7 @@ export default function AllSettings({
 		<>
 			{formSubmitted === false && (
 				<form id='settings-form' className='settings-container'>
-					<h2 className='instruction'>
+					<h2 id='instruction'>
 						Welcome, young dream-weaver! Let's spin a magical tale together.
 						Pick your heroes, set the mood, and discover wondrous worlds—or
 						conjure your own enchantments!

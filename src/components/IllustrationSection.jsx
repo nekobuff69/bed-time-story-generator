@@ -1,3 +1,4 @@
+import "./IllustrationSection.css";
 export default function IllustrationSection({illustrationUrl}) {
 	console.log("Illustration URL:", illustrationUrl);
 	return (

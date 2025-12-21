@@ -1,0 +1,10 @@
+#illustration-section {
+	border-radius: var(--global-border-radius);
+	width: 800px;
+	height: 400px;
+}
+
+#illustration {
+	border-radius: var(--global-border-radius);
+	width: 800px;
+}

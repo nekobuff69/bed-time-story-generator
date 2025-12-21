@@ -90,8 +90,8 @@ export const comfyWorkflowTemplate = {
 	},
 	34: {
 		inputs: {
-			width: 512,
-			height: 512,
+			width: 800,
+			height: 400,
 			batch_size: 1,
 		},
 		class_type: "EmptyLatentImage",

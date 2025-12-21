@@ -1,0 +1,26 @@
+#story-section {
+	width: 800px;
+	height: 360px;
+	background: url(/public/story-content-background.png);
+	background-size: 120%;
+	background-position: center;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	gap: 10px;
+}
+
+h2 {
+	margin: 0;
+	color: rgb(40, 46, 66);
+}
+
+p {
+	margin: 0;
+	text-align: left;
+	font-size: 1.1rem;
+	color: rgb(40, 46, 66);
+}

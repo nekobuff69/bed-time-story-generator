@@ -17,6 +17,7 @@ FINAL OUTPUT REQUIRMENTS:
 - The story should be at most 250 words
 - Add at emojis to high-light important descriptions, if needed. DO NOT ovreuse it.
 - Write the story in the same language as the user's input. If user's input include Chinese, you should reply in SIMPLIFIED CHINESE.
+- Use Github Flavored Markdown: h2 size for title, p size for content. Make sure the content is formatted in ONE SINGLE paragraph
 - ONLY provide the story written in markdown format. NOTHING ELSE.`;
 
 	const response = await fetch(url, {

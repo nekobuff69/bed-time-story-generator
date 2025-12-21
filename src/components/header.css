@@ -1,0 +1,23 @@
+header {
+	margin: 0;
+	padding: 0 28px;
+	background-image: url(/src/assets/header-bg.png);
+	background-size: cover;
+	background-position: center;
+
+	width: 800px;
+	height: 100px;
+	box-shadow: var(---header-box-shadow);
+	border-radius: 15px;
+
+	box-sizing: border-box;
+
+	font-family: var(---header-font-family);
+	font-size: var(---header-font-size);
+	font-weight: var(---header-font-weight);
+	color: var(---header-font-color);
+	text-shadow: var(---header-text-shadow);
+
+	text-align: left;
+	align-content: center;
+}

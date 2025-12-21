@@ -1,3 +1,4 @@
+import "./SettingItem.css";
 export default function SettingItem({
 	oneSetting,
 	handleAddValue,
@@ -42,7 +43,7 @@ export default function SettingItem({
 	// The limit of how many options one setting item can get
 
 	return (
-		<section className={`${id}-setting-container`}>
+		<section id={id} className={`one-setting-container`}>
 			<h3 className='description'>{description}</h3>
 			{oneSettingValueEl}
 			{value.length < optionLimit && ( // When number of options reach optionLimit, input field disappear
@@ -54,6 +55,7 @@ export default function SettingItem({
 					defaultValue=''
 				/>
 			)}
+			<br></br>
 			<button
 				id={`btn-add-${id}`}
 				className='btn-add-new-value'

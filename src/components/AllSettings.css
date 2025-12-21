@@ -1,0 +1,26 @@
+#settings-form {
+	background: rgb(170, 212, 235);
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0;
+	margin: 0;
+	gap: 10px;
+	border-radius: var(--global-border-radius);
+	box-shadow: var(--global-box-shadow);
+}
+
+#instruction {
+	text-align: center;
+	margin: 0;
+	font-size: 1.5rem;
+	inline-size: 2px;
+	width: 95%;
+	color: rgb(132, 8, 136);
+}
+
+.settings-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}

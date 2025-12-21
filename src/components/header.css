@@ -8,7 +8,7 @@ header {
 	width: 800px;
 	height: 100px;
 	box-shadow: var(---header-box-shadow);
-	border-radius: 15px;
+	border-radius: var(--global-border-radius);
 
 	box-sizing: border-box;
 

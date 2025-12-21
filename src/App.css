@@ -1,18 +1,20 @@
 :root {
+	--global-box-shadow: 0 5px 5px rgb(178, 200, 230);
+	--global-text-shadow: 2px 3px 4px rgb(160, 222, 59);
+	--global-border-radius: 15px;
+	--global-font-family: "ZCOOL KuaiLe", sans-serif;
+
 	---header-box-shadow: 0 5px 5px rgb(178, 200, 230);
 	---header-font-family: "Henny Penny", system-ui;
 	---header-font-size: 20px;
 	---header-font-weight: 500;
 	---header-font-color: rgb(221, 64, 161);
 	---header-text-shadow: 2px 3px 4px rgb(160, 222, 59);
-
-	---submit-panel-bg: pink;
-
-	---story-section-bg: rgb(141, 141, 202);
 }
 
 #root {
 	max-width: 1280px;
+	width: 800px;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -39,31 +41,4 @@
 	font-family: "ZCOOL KuaiLe", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-}
-
-button {
-	font-family: inherit;
-}
-
-#submit-panel {
-	background: var(---submit-panel-bg);
-}
-
-#submit-panel h1 {
-	font-family: "Henny Penny", system-ui;
-	font-size: 40px;
-}
-
-#story-section {
-	background: var(---story-section-bg);
-}
-
-#replay-panel {
-	background-color: rgb(152, 233, 105);
-	width: 100%;
-}
-
-#illustration-section img {
-	max-width: 100%;
-	height: auto;
 }

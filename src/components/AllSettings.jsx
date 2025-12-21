@@ -3,6 +3,7 @@ import SettingItem from "./SettingItem";
 import {defaultSettings} from "../data/defaultSettings.js";
 import SubmitPanel from "./submitPanel.jsx";
 import ReplayPanel from "./ReplayPanel.jsx";
+import "./AllSettings.css";
 
 export default function AllSettings({
 	getStoryContent,
@@ -88,7 +89,7 @@ export default function AllSettings({
 		// e.preventDefault();
 		const settingsData = getAllSettingsData(allSettings);
 		sendStoryContent(""); // Clear the story section before new story generated
-		const storyPlaceHolder = "## The tale is weaving itself... ##"; // To make StorySection visible, when the actual story has not been generated yet
+		const storyPlaceHolder = "# The tale is weaving itself... #"; // To make StorySection visible, when the actual story has not been generated yet
 		sendStoryContent(storyPlaceHolder);
 		setFormSubmitted(true);
 		//Reset streaming state to hide IllustrationSection
@@ -141,17 +142,17 @@ export default function AllSettings({
 	return (
 		<>
 			{formSubmitted === false && (
-				<form id='settings-form' className='settings-container'>
+				<form id='settings-form'>
 					<h2 id='instruction'>
 						Welcome, young dream-weaver! Let's spin a magical tale together.
 						Pick your heroes, set the mood, and discover wondrous worlds—or
 						conjure your own enchantments!
 					</h2>
-					{allSettingEl}
-					{optionsReachLimit && !formSubmitted && (
-						<SubmitPanel handleSubmit={handleSubmit} />
-					)}
+					<div className='settings-container'>{allSettingEl}</div>
 				</form>
+			)}
+			{optionsReachLimit && !formSubmitted && (
+				<SubmitPanel handleSubmit={handleSubmit} />
 			)}
 			{showReplayPanel && (
 				<ReplayPanel

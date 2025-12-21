@@ -1,0 +1,34 @@
+.one-setting-container {
+	background-color: pink;
+}
+
+.description {
+	background-color: green;
+}
+
+label {
+	background-color: yellow;
+}
+
+.check-box {
+	background-color: green;
+	/* visibility: visible; */
+}
+
+.custom-input {
+	background-color: red;
+}
+
+button {
+	font-family: var(--global-font-family);
+}
+
+button:disabled {
+	/* font-family: "Courier New", Courier, monospace; */
+	background-color: cyan;
+}
+
+button:hover {
+	cursor: grab;
+	background-color: aqua;
+}

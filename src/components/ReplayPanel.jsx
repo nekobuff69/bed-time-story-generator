@@ -1,3 +1,4 @@
+import "./ReplayPanel.css";
 export default function ReplayPanel({resetToDefault, handleSubmit}) {
 	return (
 		//one button trigger resetToDefault function passed AllSettings.jsx

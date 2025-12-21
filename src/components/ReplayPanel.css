@@ -1,0 +1,26 @@
+#replay-panel {
+	background: url("/public/submit-panel-background.png");
+	background-size: cover;
+	background-position: center;
+	width: 800px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	gap: 50px;
+	border-radius: var(--global-border-radius);
+	box-shadow: var(--global-box-shadow);
+}
+
+#btn-reset-form,
+#btn-one-more-story {
+	margin: 0;
+	font-size: 1.5rem;
+	width: max-content;
+	padding: 5px 10px;
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	color: rgb(131, 78, 206);
+}
